@@ -1,5 +1,9 @@
 # Setup
 
+![img](img/Figure_1.png)
+![img](img/Figure_2.png)
+![img](img/Figure_3.png)
+
 1. ### Install python
 
    Install python3 per your OS instructions.
