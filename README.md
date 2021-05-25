@@ -14,14 +14,26 @@
    Run the following command to install the project’s required libraries:
    `python -m pip install -r requirements.txt`
 
-# Module 1
+## Pip
 
-## Count Purchases by Category
+Versions pip updates frequently, but versions greater than 10.x.x should work with this project.
+
+## Tests
+
+In order to verify that everything is setup correctly, run the following command from the project root. `pytest`
+
+## Previewing Your Work
+
+`python -m budget.FrequentExpenses`
+
+## Module 1
+
+### Count Purchases by Category
 
 ### Verify module:
 
-    To run tests run: pytest -k "module1" -s
-    To run the file: python -m budget.UsingCounter
+    To run tests run: `pytest -k "module1" -s`
+    To run the file: `python -m budget.FrequentExpenses`
 
 1. ### Import the Expense Module
 
@@ -70,14 +82,14 @@
 
    The resulting graph should be displayed:
 
-# Module 2
+## Module 2
 
-## Create the BudgetList class to Display Overage Expenses
+### Create the BudgetList class to Display Overage Expenses
 
 ### Verify module:
 
-    To run tests run: pytest -k "module2" -s
-    To run the file: python -m budget.BudgetList
+    To run tests run: `pytest -k "module2" -s`
+    To run the file: `python -m budget.BudgetList`
 
 1. ### Create the BudgetList class
 
@@ -90,8 +102,8 @@
    - `self.budget` to the passed-in `budget`
    - `self.sum_expenses` to `0`
    - `self.expenses` to an empty list
-   - `self.sum_overages` to `0`
-   - `self.overages` to an empty list
+   - `self.sum_averages` to `0`
+   - `self.averages` to an empty list
 
 3. ### Define the append method
 
@@ -101,13 +113,13 @@
 
    Replace `pass` with an `if` statement that checks if `self.sum_expenses` plus the passed-in `item` is less than `self.budget`. Inside the `if` block, call `append()` on `self.expenses` and pass in `item`. Also inside the `if` block, add `item` to `self.sum_expenses`.
 
-5. ### Add items to overages that are over budget
+5. ### Add items to averages that are over budget
 
-   After the `if` block, add an `else` block that calls `append()` on `self.overages` and passes in `item`. Also, increase `self.sum_overages` by `item`.
+   After the `if` block, add an `else` block that calls `append()` on `self.averages` and passes in `item`. Also, increase `self.sum_averages` by `item`.
 
 6. ### Define the **len** method
 
-   Define a method called `__len__` that takes in `self` as a parameter. Inside the method, return the sum of the length of `self.expenses` and the length of `self.overages`.
+   Define a method called `__len__` that takes in `self` as a parameter. Inside the method, return the sum of the length of `self.expenses` and the length of `self.averages`.
 
 7. ### Define the main function
 
@@ -127,22 +139,22 @@
 
 11. ### Print the Length of myBudgetList
 
-    Call print() to print out the string 'The count of all expenses: ' concatenated with the length of myBudgList inside the print() call. Hint: Call the len() function with myBudgetList as an argument, then wrap that in a call to str() to convert to a string.
+    Call print() to print out the string 'The count of all expenses: ' concatenated with the length of myBudgeList inside the print() call. Hint: Call the len() function with myBudgetList as an argument, then wrap that in a call to str() to convert to a string.
 
 12. ### Tell Python to run the main function
 
     After the main function, create an `if` statement that checks if `__name__` is equal to `"__main__"`. If so, call `main()`.
 
-    Now we can test that append() and len() are working for our BudgetList. Run `python BudgetList.py` and the output should be `"The count of all expenses: 37"`.
+    Now we can test that append() and len() are working for our BudgetList. Run `python -m budget.BudgetList` and the output should be`"The count of all expenses: 37"`.
 
-# Module 3
+## Module 3
 
-## Finish Making BudgetList an Iterable
+### Finish Making BudgetList an Iterable
 
 ### Verify module:
 
-    To run tests run: pytest -k "module3" -s
-    To run the file: python -m budget.BudgetList
+    To run tests run: `pytest -k "module3" -s`
+    To run the file: `python -m budget.BudgetList`
 
 1. ### Create **iter**()
 
