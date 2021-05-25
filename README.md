@@ -257,3 +257,100 @@ To demonstrate this, let’s create a `for` loop to look at each set in `divided
 ### 9. Check that the categorized sets are equal by subset test
 
 Inside the `for` loop replace `pass` with a conditional that checks if `a` is a subset of `b` and `b` is a subset of `a` using the `issubset()` method. Add a `not` operator in front of the conditional, since we only want to print something if the equality test fails. Make sure you have parenthesis around the whole expression, otherwise it will only test `not` on the first part. Inside the `if` statement, print the following: `"Sets are NOT equal by subset test"`.
+
+## Module 5
+
+### Timing Set Comprehension and Plotting Categories
+
+### Verify module:
+
+    To run tests run: `pytest -k "module5" -s`
+    To run the file: `python -m budget.ExpenseCategories`
+
+### 1. Import timeit
+
+We want to use the Python `timeit` module to time whether categorizing expenses was faster using a for loop or set comprehension. First, we need to `import timeit` at the top of the `ExpenseCategories.py` file.
+
+### 2. Call timeit.timeit()
+
+After the for loop for the subset test, call `timeit.timeit()` with the following 4 arguments:
+
+`stmt = "pass"`
+
+This will eventually be the line of code we want to time the execution of.
+
+`setup = `
+
+```python
+'''
+'''
+```
+
+This multi-line string will eventually hold the lines of code that are required for stmt to run.
+
+`number=100000`
+
+This is the number of executions to time.
+
+`globals=globals()`
+
+### 3. Pass the code to timeit.timeit()
+
+Now that we know how to use `timeit.timeit()`, let’s pass in the actual code we want to time. Replace `stmt = "pass"` with `stmt = "expenses.categorize_for_loop()"`. Also set setup equal to the following multi-line string:
+
+```python
+'''
+from . import Expense
+expenses = Expense.Expenses()
+expenses.read_expenses('data/spending_data.csv')
+'''
+```
+
+### 4. Print the timeit result
+
+Wrap the entire `timeit.timeit()` call from the previous task in a `print()` statement. Then it will print out the total number of seconds to execute the `statement` the specified `number` of times.
+
+If you test this by running `python -m budget.ExpenseCategories` you should see around ~1.5 seconds printed out.
+
+### 5. Duplicate the timeit.timeit() call for set comprehension
+
+Now that we’ve set up the timer for `expenses.categorize_for_loop()`, let’s set up the timer to time expenses.`categorize_set_comprehension()`. Copy and paste the entire `print(timeit.timeit(...))` code from the previous tasks. Then replace `stmt = "expenses.categorize_for_loop()"` with `stmt = "expenses.categorize_set_comprehension()"`.
+
+If you test this by running `python -m budget.ExpenseCategories` you should see around ~1.6 seconds printed out for the set comprehension method.
+
+Set comprehension may be faster than a for loop in general for a single loop. However, we had 2 set comprehensions that each required looping to check separate conditionals whereas the for loop method only used one iteration to check the conditionals.
+
+### 6. Create the figure and axes
+
+Now that we’ve determined which categorization method was faster, we want to create a pie chart comparing the expense totals for each category.
+
+After the `timeit()` code, call `fig,ax=plt.subplots()` to initialize `fig` as the Figure and `ax` as the Axes.
+
+### 7. Create the list of labels
+
+Create a variable called `labels` and set it equal to a list with the following values: `'Necessary', 'Food', 'Unnecessary'`.
+
+### 8. Create the list of sums
+
+Inside the `divided_set_comp` list we have three sets of expenses divided by category. Now we want to create a list that has a sum for each of those expense amounts. Create a variable called `divided_expenses_sum` and set it equal to an empty list.
+
+### 9. Sum the amounts in each set
+
+Create a `for` loop that has an iterator called `category_exps` and loops through `divided_set_comp`. Inside the for loop, we want to sum the expense amounts for each set using a `list comprehension` and append that sum to the `divided_expenses_sum` list. Inside the for loop, call `divided_expenses_sum.append()`. Then inside the `append()`, call `sum()`. Inside `sum()`, we want the list comprehension that returns `x.amount for x in category_exps`.
+
+### 10. Create the pie chart
+
+Next, call `ax.pie()` with the following arguments:
+
+```python
+divided_expenses_sum
+labels = labels
+autopct = '%1.1f%%'
+# (This will format the percentage.)
+```
+
+### 10. Show the figure
+
+Finally, to display the graph, call `plt.show()`.
+
+To see the results yourself, you can run `python -m budget.ExpenseCategories` from the top-level directory. You should see the pie graph pop up in another window automatically.
